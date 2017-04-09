@@ -1,0 +1,7 @@
+{
+  "name": "nodobjc-prac",
+  "version": "1.0.0",
+  "dependencies": {
+    "nodobjc": "^2.1.0"
+  }
+}
