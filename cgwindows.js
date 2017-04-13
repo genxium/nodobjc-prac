@@ -11,6 +11,18 @@ const boxedWindowListBuffer = $.CGWindowListCopyWindowInfo($.kCGWindowListOption
 
 // Reference https://developer.apple.com/reference/foundation/1587932-cfbridgingrelease
 const unboxedWindowList = $.CFBridgingRelease(boxedWindowListBuffer);
-console.log(unboxedWindowList);
+console.log(typeof unboxedWindowList);
+
+// Reference http://tootallnate.github.io/NodObjC/.
+console.log(unboxedWindowList.ancestors());
+console.log(unboxedWindowList.methods());
+
+const count = unboxedWindowList('count');
+console.log('There\'re totally ' + count + ' windows.');
+
+for (let i = 0; i < count; ++i) {
+  const single = unboxedWindowList('objectAtIndex', i);
+  console.log('Found window of pid ' + single('objectForKey', $.kCGWindowOwnerPID));
+}
 
 pool('drain');
